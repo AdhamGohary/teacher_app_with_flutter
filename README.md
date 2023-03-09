@@ -15,7 +15,6 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 ![loginScreen](https://github.com/BlackedHorse/teacher_app_with_flutter/blob/main/screen%20ui/photo/login.JPG)
----
 ![mainScreen](https://github.com/BlackedHorse/teacher_app_with_flutter/blob/main/screen%20ui/photo/main.JPG)
 ![groupScreen](https://github.com/BlackedHorse/teacher_app_with_flutter/blob/main/screen%20ui/photo/group.JPG)
 ---
