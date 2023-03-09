@@ -1,6 +1,6 @@
 # Teacher App
 ---
-A simple application that enables the teacher to view the classes and the students who are in them, and to contact the parents
+**_A simple application that enables the teacher to view the classes and the students who are in them, and to contact the parents_**
 
 ---
 ![loginScreen](https://github.com/BlackedHorse/teacher_app_with_flutter/blob/main/screen%20ui/photo/login.JPG)
