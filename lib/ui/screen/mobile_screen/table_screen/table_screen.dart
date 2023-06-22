@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:teacher_app/model/class_name.dart';
+import 'package:teacher_app/model/subject.dart';
+import 'package:teacher_app/model/teacher_table.dart';
 import 'package:teacher_app/ui/screen/mobile_screen/component/sidabar_and_container/sidebar_and_container.dart';
 import 'package:teacher_app/ui/screen/mobile_screen/table_screen/component/right_column_with_three_txt/right_column_with_three_txt.dart';
 import 'package:teacher_app/ui/screen/mobile_screen/table_screen/table_screen_functions/table_screen_functions.dart';
@@ -8,8 +11,9 @@ import 'package:teacher_app/ui/widgets/custom_elvated_btn/custom_elvated_btn.dar
 import 'package:teacher_app/ui/widgets/custom_txt/custom_txt.dart';
 import 'package:teacher_app/ui/widgets/tween_animation_for_widget/tween_animation_for_widget.dart';
 import 'package:teacher_app/utils/constants/colors.dart';
+import 'package:teacher_app/utils/functions/const_functions/print.dart';
 import 'package:teacher_app/utils/functions/const_functions/screen_size_function.dart';
-import 'package:teacher_app/view_model/table_data_view_model/table_data_view_model.dart';
+import 'package:teacher_app/view_model/teacher_table_view_model/teacher_table_view_model.dart';
 import 'component/left_column_with_three_txt/left_column_with_three_txt.dart';
 
 class TablesScreen extends StatefulWidget {
@@ -28,9 +32,9 @@ class _TablesScreenState extends State<TablesScreen> {
     index = true;
     selectIndex = 0;
     selectDayIndex = 0;
-    Provider.of<TableDataViewModel>(context, listen: false).selectDay =
-        Provider.of<TableDataViewModel>(context, listen: false).daysOfWeek[0]
-            ['subjectsOfThisDay'];
+    context.read<TeacherTableViewModel>().getTeacherTable();
+    Provider.of<TeacherTableViewModel>(context, listen: false).teacherTable =
+        [];
     super.initState();
   }
 
@@ -52,7 +56,7 @@ class _TablesScreenState extends State<TablesScreen> {
                       child: ListView.builder(
                           scrollDirection: Axis.horizontal,
                           itemCount: context
-                              .watch<TableDataViewModel>()
+                              .watch<TeacherTableViewModel>()
                               .daysOfWeek
                               .length,
                           itemBuilder: (context, index) {
@@ -71,8 +75,8 @@ class _TablesScreenState extends State<TablesScreen> {
                                     });
                                   },
                                   txt: context
-                                      .watch<TableDataViewModel>()
-                                      .daysOfWeek[index]['day'],
+                                      .watch<TeacherTableViewModel>()
+                                      .daysOfWeek[index],
                                 ),
                               ),
                             );
@@ -88,10 +92,10 @@ class _TablesScreenState extends State<TablesScreen> {
                     backgroundColor: deepPurple2,
                     width: 0.4 * getWidth(context: context),
                     child: CustomTxt(
-                      data: context.watch<TableDataViewModel>().daysOfWeek[
+                      data: context.watch<TeacherTableViewModel>().daysOfWeek[
                           context
-                              .watch<TableDataViewModel>()
-                              .selectDayIndex]['day'],
+                              .watch<TeacherTableViewModel>()
+                              .selectDayIndex],
                       fontColor: deepPurple1,
                     ),
                   ),
@@ -103,9 +107,9 @@ class _TablesScreenState extends State<TablesScreen> {
                     tweenBegin: 1.0 * getHeight(context: context),
                     tweenEnd: 0.0 * getHeight(context: context),
                     child: ListView.builder(
-                        itemCount: context
-                            .watch<TableDataViewModel>()
-                            .selectDay
+                        itemCount: Provider.of<TeacherTableViewModel>(context,
+                                listen: false)
+                            .subjectsOfSelectDay!
                             .length,
                         itemBuilder: (context, index) {
                           return Padding(
@@ -139,8 +143,8 @@ class _TablesScreenState extends State<TablesScreen> {
                                               0.02 * getWidth(context: context),
                                           left:
                                               0.1 * getWidth(context: context)),
-                                      child:
-                                          RightColumnWithThreeTxt(index: index))
+                                      child: RightColumnWithThreeTxt(
+                                          index: index)),
                                 ],
                               ),
                             ),

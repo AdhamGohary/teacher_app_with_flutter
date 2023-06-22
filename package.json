@@ -1,0 +1,24 @@
+{
+  "dependencies": {
+    "axios": "^1.4.0",
+    "dotenv": "^16.0.3",
+    "jsonwebtoken": "^9.0.0",
+    "node-localstorage": "^2.2.1",
+    "nodemon": "^2.0.22"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon E:/programs/flutter/flutter-projects/teacher_app/lib/token.js"
+  },
+  "name": "teacher_app",
+  "description": "---\r **_A simple application that enables the teacher to view the classes and the students who are in them, and to contact the parents_**",
+  "version": "1.0.0",
+  "main": "token.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "devDependencies": {},
+  "author": "Adham",
+  "license": "ISC"
+}

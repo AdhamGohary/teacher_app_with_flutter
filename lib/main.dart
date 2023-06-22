@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
+import 'package:teacher_app/repo/services/api.dart';
 import 'package:teacher_app/responsive/responsive.dart';
 import 'package:teacher_app/ui/screen/mobile_screen/login_screen/login_screen.dart';
 import 'package:teacher_app/ui/screen/mobile_screen/main_screen/main_screen.dart';
 import 'package:teacher_app/view_model/class_stage_subject_data_view_model/class_stage_subject_data_view_model.dart';
 import 'package:teacher_app/view_model/homework_data_view_model/homework_data_view_model.dart';
 import 'package:teacher_app/view_model/student_data_view_model/student_data_view_model.dart';
-import 'package:teacher_app/view_model/table_data_view_model/table_data_view_model.dart';
+import 'package:teacher_app/view_model/teacher_table_view_model/teacher_table_view_model.dart';
 import 'package:teacher_app/view_model/user_data_view_model/user_data_view_model.dart';
 
 void main() {
@@ -35,11 +36,11 @@ class MyApp extends StatelessWidget {
         Provider<ClassStageSubjectDataViewModel>(
           create: (context) => ClassStageSubjectDataViewModel(),
         ),
-         Provider<TableDataViewModel>(
-          create: (context) => TableDataViewModel(),
+         Provider<TeacherTableViewModel>(
+          create: (context) => TeacherTableViewModel(userRepo:Api()),
         ),
          Provider<UserDataViewModel>(
-          create: (context) => UserDataViewModel(),
+          create: (context) => UserDataViewModel(userRepo: Api()),
         ),
       ],
       child: MaterialApp(

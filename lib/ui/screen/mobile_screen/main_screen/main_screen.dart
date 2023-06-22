@@ -49,24 +49,28 @@ class _MainScreenState extends State<MainScreen> {
                   txt: "المراحل والفصول",
                   backgroundColor: const Color.fromRGBO(237, 107, 93, 1),
                   screen: const GroupsScreen(),
+                  function: null,
                 ),
                 ContainerWithRowWithTwoChild(
                   nameOfImage2: 'images/assignment 1.png',
                   txt: "الواجبات",
                   backgroundColor: const Color.fromRGBO(91, 108, 136, 1),
                   screen: const HomeworkScreen(),
+                  function: null,
                 ),
                 ContainerWithRowWithTwoChild(
                   nameOfImage2: 'images/schedule 1.png',
                   txt: "جدول الحصص",
                   backgroundColor: const Color.fromRGBO(145, 171, 144, 1),
                   screen: const TablesScreen(),
+                  function:null,
                 ),
                 ContainerWithRowWithTwoChild(
                   nameOfImage2: 'images/chat (2) 1.png',
                   txt: "المحادثات",
                   backgroundColor: const Color.fromRGBO(247, 190, 137, 1),
                   screen: const ChatsScreen(),
+                  function: null,
                 )
               ],
             ),

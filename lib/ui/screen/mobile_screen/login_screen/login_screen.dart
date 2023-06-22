@@ -98,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           onTapColor: deepPurple2,
                           function: () {
                             loginBtnOnTapFunc(
-                                userName: userNameController.text
+                                email: userNameController.text
                                     .toLowerCase()
                                     .trim(),
                                 userPassword: passUserNameController.text

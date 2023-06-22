@@ -111,6 +111,7 @@ class ContainerAsSideBar extends StatelessWidget {
                           btnCancelTxt: 'لا',
                           btnCancelFunc: () {
                             Navigator.of(context).pop();
+                            
                           },
                           btnOkTxt: 'نعم',
                           btnOkFunc: () {

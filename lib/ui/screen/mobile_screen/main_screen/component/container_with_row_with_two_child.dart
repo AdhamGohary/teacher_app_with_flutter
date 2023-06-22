@@ -10,12 +10,15 @@ class ContainerWithRowWithTwoChild extends StatelessWidget {
   String nameOfImage2;
   String txt;
   Widget screen;
+  Future<Function>? function;
+
   ContainerWithRowWithTwoChild(
       {super.key,
       this.backgroundColor,
       required this.screen,
       required this.nameOfImage2,
-      required this.txt});
+      required this.txt,
+      required this.function});
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +29,10 @@ class ContainerWithRowWithTwoChild extends StatelessWidget {
           right: 0.07 * getWidth(context: context),
           top: 0.03 * getHeight(context: context)),
       child: InkWell(
-        onTap: () => {
+        onTap: () async {
+          await function;
           navigateWithSlideTranstionFun(
-              context: context, nextScreen: screen, xBegin: 1, yBegin: 0),
+              context: context, nextScreen: screen, xBegin: 1, yBegin: 0);
         },
         child: CustomContainer(
           height: 0.12 * getHeight(context: context),
