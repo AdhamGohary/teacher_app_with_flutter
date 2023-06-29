@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:teacher_app/ui/widgets/custom_txt/custom_txt.dart';
 import 'package:teacher_app/utils/functions/const_functions/screen_size_function.dart';
 import 'package:teacher_app/view_model/teacher_table_view_model/teacher_table_view_model.dart';
-import 'package:teacher_app/model/user.dart';
 
 class LeftColumnWithThreeTxt extends StatelessWidget {
   final int index;
@@ -28,7 +27,7 @@ class LeftColumnWithThreeTxt extends StatelessWidget {
               data: context
                   .watch<TeacherTableViewModel>()
                   .subjectsOfSelectDay![index]
-                  .className!
+                  .className
                   .name!,
               fontColor: Colors.white),
         ],

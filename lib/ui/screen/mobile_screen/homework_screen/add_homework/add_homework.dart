@@ -7,8 +7,9 @@ import 'package:teacher_app/ui/widgets/custom_elvated_btn/custom_elvated_btn.dar
 import 'package:teacher_app/ui/widgets/custom_txt/custom_txt.dart';
 import 'package:teacher_app/ui/widgets/custom_txt_form_field/custom_txt_form_field.dart';
 import 'package:teacher_app/utils/constants/colors.dart';
+import 'package:teacher_app/utils/functions/const_functions/print.dart';
 import 'package:teacher_app/utils/functions/const_functions/screen_size_function.dart';
-import 'package:teacher_app/view_model/homework_data_view_model/homework_data_view_model.dart';
+import 'package:teacher_app/view_model/home_work_view_model/home_work_view_model.dart';
 import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
@@ -20,26 +21,12 @@ class AddHomework extends StatefulWidget {
 }
 
 class _AddHomeworkState extends State<AddHomework> {
-  late bool index;
+  late TextEditingController? homeWorkTitle;
+  late TextEditingController? homeWorkDesc;
   @override
   void initState() {
-    index = true;
-    Provider.of<HomeworkDataViewModel>(context, listen: false).chooseClass =
-        false;
-    Provider.of<HomeworkDataViewModel>(context, listen: false).classDropEnabl =
-        false;
-    Provider.of<HomeworkDataViewModel>(context, listen: false).classDropColor =
-        Colors.grey;
-    Provider.of<HomeworkDataViewModel>(context, listen: false)
-        .subjectDropEnabl = false;
-    Provider.of<HomeworkDataViewModel>(context, listen: false).stageDropColor =
-        Colors.grey;
-    Provider.of<HomeworkDataViewModel>(context, listen: false).stageDropEnabl =
-        true;
-    Provider.of<HomeworkDataViewModel>(context, listen: false).stageDropColor =
-        Colors.white;
-    Provider.of<HomeworkDataViewModel>(context, listen: false).selectKeyWord =
-        '';
+    homeWorkTitle = TextEditingController();
+    homeWorkDesc = TextEditingController();
     super.initState();
   }
 
@@ -67,6 +54,7 @@ class _AddHomeworkState extends State<AddHomework> {
                 width: 0.9 * getWidth(context: context),
                 height: 0.17 * getHeight(context: context),
                 child: CustomTxtFormField(
+                  textEditingController: homeWorkTitle,
                   hintText: 'عنوان الواجب',
                   obScure: false,
                   regExpSource: "",
@@ -87,6 +75,7 @@ class _AddHomeworkState extends State<AddHomework> {
                 width: 0.9 * getWidth(context: context),
                 height: 0.17 * getHeight(context: context),
                 child: CustomTxtFormField(
+                  textEditingController: homeWorkDesc,
                   hintText: 'تفاصيل الواجب',
                   obScure: false,
                   regExpSource: "",
@@ -123,9 +112,26 @@ class _AddHomeworkState extends State<AddHomework> {
                   btnColor: Colors.blueAccent,
                   onTapColor: Colors.white,
                   function: () {
-                    setState(() {
-                      addHomeworkBtnFunc(context: context);
-                    });
+                    checkDebugMode('success from addhomeworkscreen');
+                    addHomeworkBtnFunc(
+                      context: context,
+                      title: homeWorkTitle!.text.toLowerCase(),
+                      desc: homeWorkDesc!.text.toLowerCase(),
+                      classId:
+                          Provider.of<HomeWorkViewModel>(context, listen: false)
+                              .classId,
+                      grade:
+                          Provider.of<HomeWorkViewModel>(context, listen: false)
+                              .gradeId,
+                      subject:
+                          Provider.of<HomeWorkViewModel>(context, listen: false)
+                              .subjectId,
+                      teacher:
+                          Provider.of<HomeWorkViewModel>(context, listen: false)
+                              .teacherId,
+                    );
+                    homeWorkDesc!.clear();
+                    homeWorkTitle!.clear();
                   })
             ],
           ),

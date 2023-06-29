@@ -18,25 +18,17 @@ class RightColumnWithThreeTxt extends StatelessWidget {
             data: context
                 .watch<TeacherTableViewModel>()
                 .subjectsOfSelectDay![index]
-                .subject!
+                .subject
                 .name!,
             fontColor: deepPurple1),
         Row(
           children: [
             CustomTxt(
                 data: (context
-                        .watch<TeacherTableViewModel>()
-                        .subjectsOfSelectDay![index]
-                        .startAt)
-                    .substring(11, 16),
-                fontColor: deepPurple1),
-            CustomTxt(data: ' - '),
-            CustomTxt(
-                data: (context
-                        .watch<TeacherTableViewModel>()
-                        .subjectsOfSelectDay![index]
-                        .endAt)
-                    .substring(11, 16),
+                    .watch<TeacherTableViewModel>()
+                    .subjectsOfSelectDay![index]
+                    .time),
+                // .substring(11, 16),
                 fontColor: deepPurple1),
           ],
         ),

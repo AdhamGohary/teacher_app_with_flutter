@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:teacher_app/model/student.dart';
 import 'package:teacher_app/ui/screen/mobile_screen/component/sidabar_and_container/sidebar_and_container.dart';
 import 'package:teacher_app/ui/screen/mobile_screen/groups_screen/groups_screen_functions/groups_screen_functions.dart';
 import 'package:teacher_app/ui/widgets/custom_elvated_btn/custom_elvated_btn.dart';
 import 'package:teacher_app/ui/widgets/custom_txt/custom_txt.dart';
-import 'package:teacher_app/ui/widgets/tween_animation_for_widget/tween_animation_for_widget.dart';
 import 'package:teacher_app/utils/constants/colors.dart';
 import 'package:teacher_app/utils/functions/const_functions/font_size.dart';
+import 'package:teacher_app/utils/functions/const_functions/print.dart';
 import 'package:teacher_app/utils/functions/const_functions/screen_size_function.dart';
-import 'package:teacher_app/view_model/class_stage_subject_data_view_model/class_stage_subject_data_view_model.dart';
+import 'package:teacher_app/view_model/student_view_model/student_view_model.dart';
+import 'package:teacher_app/view_model/teacher_classes_view_model.dart/teacher_classes_view_model.dart';
 
 class GroupsScreen extends StatefulWidget {
   const GroupsScreen({Key? key}) : super(key: key);
@@ -18,15 +20,17 @@ class GroupsScreen extends StatefulWidget {
 }
 
 class _GroupsScreenState extends State<GroupsScreen> {
-  // late bool index;
   late int iconIndex;
   String? myClass;
   @override
   void initState() {
-    // index = true;
-    Provider.of<ClassStageSubjectDataViewModel>(context, listen: false)
+    Provider.of<TeacheClassesViewModel>(context, listen: false)
         .selectClassInGroupScreen = false;
     iconIndex = 1;
+   /* Provider.of<StudentViewModel>(context, listen: false)
+        .classStudents!
+        .clear();*/
+    // myClass = 'ب';
     super.initState();
   }
 
@@ -73,76 +77,88 @@ class _GroupsScreenState extends State<GroupsScreen> {
                   color: const Color.fromRGBO(32, 85, 120, 0.7),
                   thickness: 0.01 * getWidth(context: context),
                 ),
-                TweenAnimationForWidget(
-                  tweenBegin: 1.0 * getHeight(context: context),
-                  tweenEnd: 0.0 * getHeight(context: context),
-                  child: SizedBox(
-                    height: 0.5 * getHeight(context: context),
-                    child: ListView.builder(
-                        itemCount: context
-                            .watch<ClassStageSubjectDataViewModel>()
-                            .dataOfClassStageSubject
-                            .length,
-                        itemBuilder: (context, index) {
-                          return Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: EdgeInsets.only(
-                                      left: 0.08 * getHeight(context: context)),
-                                  child: CustomTxt(
-                                      data:
-                                          '${context.watch<ClassStageSubjectDataViewModel>().dataOfClassStageSubject[index]['class']}'),
-                                ),
-                              ),
-                              Expanded(
+                SizedBox(
+                  height: 0.5 * getHeight(context: context),
+                  child: ListView.builder(
+                      itemCount: context
+                          .watch<TeacheClassesViewModel>()
+                          .teacherClasses!
+                          .length,
+                      itemBuilder: (context, index) {
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Expanded(
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                    left: 0.08 * getHeight(context: context)),
                                 child: CustomTxt(
-                                    data:
-                                        '${context.watch<ClassStageSubjectDataViewModel>().dataOfClassStageSubject[index]['stage']}'),
+                                    data: context
+                                        .watch<TeacheClassesViewModel>()
+                                        .teacherClasses![index]
+                                        .className),
                               ),
-                              Expanded(
+                            ),
+                            Expanded(
                                 child: CustomTxt(
-                                    data:
-                                        '${context.watch<ClassStageSubjectDataViewModel>().dataOfClassStageSubject[index]['subject']}'),
-                              ),
-                              Radio(
-                                  value:
-                                      '${context.watch<ClassStageSubjectDataViewModel>().dataOfClassStageSubject[index]['class']}',
-                                  groupValue: myClass,
-                                  onChanged: (val) {
-                                    setState(() {
-                                      myClass = val;
-                                      radioBtnOnChangeFunc(
-                                          context: context, index: index);
-                                    });
-                                  })
-                            ],
-                          );
-                        }),
-                  ),
+                                    data: context
+                                        .watch<TeacheClassesViewModel>()
+                                        .teacherClasses![index]
+                                        .gradeName)),
+                            Expanded(
+                              child: CustomTxt(
+                                  data: context
+                                      .watch<TeacheClassesViewModel>()
+                                      .teacherClasses![index]
+                                      .subjectName),
+                            ),
+                            Radio(
+                                value: context
+                                    .watch<TeacheClassesViewModel>()
+                                    .teacherClasses![index]
+                                    .className,
+                                groupValue: myClass,
+                                onChanged: (val) {
+                                  myClass = val;
+
+                                  radioBtnOnChangeFunc(
+                                    context: context,
+                                    index: index,
+                                  );
+                                  checkDebugMode(Provider.of<StudentViewModel>(
+                                          context,
+                                          listen: false)
+                                      .classId);
+                                  setState(() {});
+                                })
+                          ],
+                        );
+                      }),
                 ),
                 Padding(
                   padding:
                       EdgeInsets.only(top: 0.06 * getHeight(context: context)),
                   child: CustomElvatedBtn(
-                    function: () {
-                      setState(() {
-                        showStudentBtnOnTabFunc(
-                            context: context, nameOfClass: myClass);
-                      });
-                    },
+                    txt: 'عرض الطلاب',
+                    textStyle: TextStyle(
+                        fontFamily: 'ElMessiri',
+                        fontSize: contentTxtSize(context)),
                     btnColor: context
-                                .watch<ClassStageSubjectDataViewModel>()
+                                .watch<TeacheClassesViewModel>()
                                 .selectClassInGroupScreen ==
                             true
                         ? deepPurple1
                         : Colors.grey,
                     onTapColor: Colors.white,
-                    txt: 'عرض الطلاب',
-                    textStyle: TextStyle(
-                        fontFamily: 'ElMessiri',
-                        fontSize: contentTxtSize(context)),
+                    function: () {
+                      showStudentBtnOnTabFunc(
+                          context: context,
+                          nameOfClass: myClass,
+                          classId: Provider.of<StudentViewModel>(context,
+                                  listen: false)
+                              .classId);
+                      setState(() {});
+                    },
                   ),
                 )
               ],

@@ -1,5 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:teacher_app/ui/screen/mobile_screen/chats_screen/chats_screen.dart';
 import 'package:teacher_app/ui/screen/mobile_screen/groups_screen/groups_screen.dart';
 import 'package:teacher_app/ui/screen/mobile_screen/homework_screen/homework_screen.dart';
@@ -11,6 +12,9 @@ import 'package:teacher_app/utils/constants/colors.dart';
 import 'package:teacher_app/utils/functions/const_functions/navigate_with_slide_transtion_fun.dart';
 import 'package:teacher_app/utils/functions/const_functions/screen_size_function.dart';
 import 'package:teacher_app/utils/functions/const_functions/view_dialog.dart';
+import 'package:teacher_app/view_model/home_work_view_model/home_work_view_model.dart';
+import 'package:teacher_app/view_model/teacher_classes_view_model.dart/teacher_classes_view_model.dart';
+import 'package:teacher_app/view_model/teacher_table_view_model/teacher_table_view_model.dart';
 
 // ignore: must_be_immutable
 class ContainerAsSideBar extends StatelessWidget {
@@ -111,12 +115,20 @@ class ContainerAsSideBar extends StatelessWidget {
                           btnCancelTxt: 'لا',
                           btnCancelFunc: () {
                             Navigator.of(context).pop();
-                            
                           },
                           btnOkTxt: 'نعم',
                           btnOkFunc: () {
                             Navigator.of(context).pushNamedAndRemoveUntil(
                                 'LoginScreen', (route) => false);
+                            Provider.of<TeacheClassesViewModel>(context,
+                                    listen: false)
+                                .teacherClasses = [];
+                            Provider.of<TeacherTableViewModel>(context,
+                                    listen: false)
+                                .teacherTable = [];
+                            Provider.of<HomeWorkViewModel>(context,
+                                    listen: false)
+                                .allHomeWorks = [];
                           },
                           dialogType: DialogType.question,
                         );

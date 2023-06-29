@@ -43,6 +43,6 @@ class StudentDataViewModel extends ChangeNotifier {
           .toList();
     }
 
-    foundStudent = result;
+    dataOfStudent = result;
   }
 }

@@ -3,19 +3,19 @@ import 'package:teacher_app/model/subject.dart';
 
 class TeacherTable {
   late String id;
-  late ClassName? className;
+  late ClassName className;
   late int day;
-  late Subject? subject;
-  late String startAt;
-  late String endAt;
+  late Subject subject;
+  late String time;
+  // late String endAt;
   late String gradeName;
   TeacherTable(
       {required this.id,
       required this.className,
       required this.day,
       required this.subject,
-      required this.startAt,
-      required this.endAt,
+      required this.time,
+      // required this.endAt,
       required this.gradeName});
 
   factory TeacherTable.fromJson(Map<String, dynamic> json) {
@@ -23,9 +23,9 @@ class TeacherTable {
         id: json['_id'],
         className: ClassName.fromJson(json['classId']),
         day: json['day'],
+        time: json['time'],
         subject: Subject.fromJson(json['subject']),
-        startAt: json['startAt'],
-        endAt: json['endAt'],
+        // endAt: json['endAt'],
         gradeName: json['gradeName']);
   }
 
@@ -35,8 +35,8 @@ class TeacherTable {
       'classId': className,
       'day': day,
       'subject': subject,
-      'startAt': startAt,
-      'endAt': endAt,
+      'time': time,
+      // 'endAt': endAt,
       'gradName': gradeName
     };
   }

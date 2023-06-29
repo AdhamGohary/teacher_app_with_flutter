@@ -9,12 +9,4 @@ class UserDataViewModel extends ChangeNotifier {
     await userRepo.login(user);
     notifyListeners();
   }
-
-  /* Future<void> getAllUsers() async {
-    List? list = await userRepo.getAllUsers();
-    users.addAll(list.map((e) => User.fromJson(e)).toList());
-    notifyListeners();
-    checkDebugMode(users);
-    // checkDebugMode(getToken());
-  }*/
 }
