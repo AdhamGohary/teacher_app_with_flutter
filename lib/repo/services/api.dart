@@ -30,11 +30,10 @@ class Api extends UserRepo with HomeWorkRepo, StudentRepo {
   @override
   Future<void> addHomeWork(HomeWork homeWork) async {
     try {
-      http.Response response = await http.post(
+      await http.post(
           Uri.parse('$teacherUrl/addHomeWork'),
           headers: {'content-type': 'application/json'},
           body: jsonEncode(homeWork));
-      checkDebugMode(response.body);
     } catch (e) {
       checkDebugMode(e);
     }
@@ -43,7 +42,7 @@ class Api extends UserRepo with HomeWorkRepo, StudentRepo {
 ///////////////////////////////////////////////////////////////
   @override
   Future<List>? getAllHomeWorks() async {
-    List? allHomeWorks = [];
+    List? allHomeWorks ;
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       String? teacherInfoString = prefs.getString('teacherInfo');
@@ -110,7 +109,7 @@ class Api extends UserRepo with HomeWorkRepo, StudentRepo {
       http.Response respnse = await http
           .get(Uri.parse('$studentUrl/getStudentsByClassId/$classId'));
       classStudents = jsonDecode(respnse.body);
-      checkDebugMode(classId);
+    
     } catch (e) {
       checkDebugMode(e);
     }

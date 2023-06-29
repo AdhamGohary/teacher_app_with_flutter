@@ -67,9 +67,6 @@ class CustomTxtFormField extends StatelessWidget {
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.white, width: borderWidth),
         ),
-        // focusedBorder: OutlineInputBorder(
-        //   borderSide: BorderSide(color: Colors.blue, width: borderWidth),
-        // ),
         errorBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.red, width: borderWidth),
         ),

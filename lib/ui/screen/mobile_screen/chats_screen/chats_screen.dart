@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:teacher_app/ui/screen/mobile_screen/component/sidabar_and_container/sidebar_and_container.dart';
-import 'package:teacher_app/ui/screen/mobile_screen/groups_screen/show_students/details_of_students/connection_with_father_or_mother/connection_with_father_or_mother.dart';
+import 'package:teacher_app/ui/screen/mobile_screen/groups_screen/show_students_screen/connection_with_parent_screen/connection_with_parent_screen.dart';
 import 'package:teacher_app/ui/widgets/custom_circle_avatar/custom_circle_avatar.dart';
 import 'package:teacher_app/ui/widgets/custom_container/custom_container.dart';
 import 'package:teacher_app/ui/widgets/custom_txt/custom_txt.dart';
 import 'package:teacher_app/utils/constants/colors.dart';
 import 'package:teacher_app/utils/functions/const_functions/navigate_with_slide_transtion_fun.dart';
 import 'package:teacher_app/utils/functions/const_functions/screen_size_function.dart';
-import 'package:teacher_app/view_model/student_data_view_model/student_data_view_model.dart';
 
 class ChatsScreen extends StatefulWidget {
   const ChatsScreen({Key? key}) : super(key: key);
@@ -29,7 +28,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: deepPurple1,
-        body: SidebarAndContainer(
+       /* body: SidebarAndContainer(
           iconIndex: 4,
           widgetOfScreen: Column(
             children: [
@@ -98,7 +97,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
                 ),
               )
             ],
-          ),
-        ));
+          ),*/
+        );
   }
 }

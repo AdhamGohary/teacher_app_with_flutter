@@ -2,7 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:teacher_app/model/home_work.dart';
-import 'package:teacher_app/ui/screen/mobile_screen/homework_screen/add_homework/add_homework.dart';
+import 'package:teacher_app/ui/screen/mobile_screen/homework_screen/add_homework_screen/add_homework_screen.dart';
 import 'package:teacher_app/utils/functions/const_functions/navigate_with_slide_transtion_fun.dart';
 import 'package:teacher_app/utils/functions/const_functions/view_dialog.dart';
 import 'package:teacher_app/view_model/home_work_view_model/home_work_view_model.dart';

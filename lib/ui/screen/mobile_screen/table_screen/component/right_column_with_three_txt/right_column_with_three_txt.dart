@@ -28,7 +28,6 @@ class RightColumnWithThreeTxt extends StatelessWidget {
                     .watch<TeacherTableViewModel>()
                     .subjectsOfSelectDay![index]
                     .time),
-                // .substring(11, 16),
                 fontColor: deepPurple1),
           ],
         ),

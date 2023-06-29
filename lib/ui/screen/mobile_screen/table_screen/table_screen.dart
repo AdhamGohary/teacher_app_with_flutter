@@ -27,7 +27,6 @@ class _TablesScreenState extends State<TablesScreen> {
     index = true;
     selectIndex = 0;
     selectDayIndex = 0;
-
     super.initState();
   }
 

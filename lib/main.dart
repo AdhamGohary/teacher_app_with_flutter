@@ -5,12 +5,10 @@ import 'package:teacher_app/repo/services/api.dart';
 import 'package:teacher_app/responsive/responsive.dart';
 import 'package:teacher_app/ui/screen/mobile_screen/login_screen/login_screen.dart';
 import 'package:teacher_app/ui/screen/mobile_screen/main_screen/main_screen.dart';
-import 'package:teacher_app/view_model/student_data_view_model/student_data_view_model.dart';
 import 'package:teacher_app/view_model/student_view_model/student_view_model.dart';
 import 'package:teacher_app/view_model/teacher_classes_view_model.dart/teacher_classes_view_model.dart';
 import 'package:teacher_app/view_model/teacher_table_view_model/teacher_table_view_model.dart';
 import 'package:teacher_app/view_model/user_data_view_model/user_data_view_model.dart';
-
 import 'view_model/home_work_view_model/home_work_view_model.dart';
 
 void main() {
@@ -35,9 +33,7 @@ class MyApp extends StatelessWidget {
          Provider<StudentViewModel>(
           create: (context) => StudentViewModel( studentRepo: Api()),
         ),
-        Provider<StudentDataViewModel>(
-          create: (context) => StudentDataViewModel(),
-        ),
+        
         Provider<TeacherTableViewModel>(
           create: (context) => TeacherTableViewModel(userRepo: Api()),
         ),

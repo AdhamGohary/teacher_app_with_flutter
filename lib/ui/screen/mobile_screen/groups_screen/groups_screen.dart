@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:teacher_app/model/student.dart';
 import 'package:teacher_app/ui/screen/mobile_screen/component/sidabar_and_container/sidebar_and_container.dart';
 import 'package:teacher_app/ui/screen/mobile_screen/groups_screen/groups_screen_functions/groups_screen_functions.dart';
 import 'package:teacher_app/ui/widgets/custom_elvated_btn/custom_elvated_btn.dart';
@@ -27,10 +26,6 @@ class _GroupsScreenState extends State<GroupsScreen> {
     Provider.of<TeacheClassesViewModel>(context, listen: false)
         .selectClassInGroupScreen = false;
     iconIndex = 1;
-   /* Provider.of<StudentViewModel>(context, listen: false)
-        .classStudents!
-        .clear();*/
-    // myClass = 'ب';
     super.initState();
   }
 
@@ -125,10 +120,6 @@ class _GroupsScreenState extends State<GroupsScreen> {
                                     context: context,
                                     index: index,
                                   );
-                                  checkDebugMode(Provider.of<StudentViewModel>(
-                                          context,
-                                          listen: false)
-                                      .classId);
                                   setState(() {});
                                 })
                           ],

@@ -21,13 +21,20 @@ class AddHomework extends StatefulWidget {
 }
 
 class _AddHomeworkState extends State<AddHomework> {
-  late TextEditingController? homeWorkTitle;
-  late TextEditingController? homeWorkDesc;
+  late TextEditingController homeWorkTitle;
+  late TextEditingController homeWorkDesc;
   @override
   void initState() {
     homeWorkTitle = TextEditingController();
     homeWorkDesc = TextEditingController();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    homeWorkDesc.dispose();
+    homeWorkTitle.dispose();
+    super.dispose();
   }
 
   @override
@@ -112,11 +119,10 @@ class _AddHomeworkState extends State<AddHomework> {
                   btnColor: Colors.blueAccent,
                   onTapColor: Colors.white,
                   function: () {
-                    checkDebugMode('success from addhomeworkscreen');
                     addHomeworkBtnFunc(
                       context: context,
-                      title: homeWorkTitle!.text.toLowerCase(),
-                      desc: homeWorkDesc!.text.toLowerCase(),
+                      title: homeWorkTitle.text.toLowerCase(),
+                      desc: homeWorkDesc.text.toLowerCase(),
                       classId:
                           Provider.of<HomeWorkViewModel>(context, listen: false)
                               .classId,
@@ -130,8 +136,8 @@ class _AddHomeworkState extends State<AddHomework> {
                           Provider.of<HomeWorkViewModel>(context, listen: false)
                               .teacherId,
                     );
-                    homeWorkDesc!.clear();
-                    homeWorkTitle!.clear();
+                    homeWorkDesc.clear();
+                    homeWorkTitle.clear();
                   })
             ],
           ),

@@ -1,7 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:teacher_app/ui/screen/mobile_screen/chats_screen/chats_screen.dart';
 import 'package:teacher_app/ui/screen/mobile_screen/groups_screen/groups_screen.dart';
 import 'package:teacher_app/ui/screen/mobile_screen/homework_screen/homework_screen.dart';
 import 'package:teacher_app/ui/screen/mobile_screen/main_screen/main_screen.dart';
@@ -93,11 +92,11 @@ class ContainerAsSideBar extends StatelessWidget {
                       iconIndex == 4 ? Colors.white : Colors.transparent,
                   child: CustomIconBtn(
                       function: () {
-                        navigateWithSlideTranstionFun(
+                       /* navigateWithSlideTranstionFun(
                             context: context,
                             nextScreen: const ChatsScreen(),
                             xBegin: 1,
-                            yBegin: 0);
+                            yBegin: 0);*/
                       },
                       icon: Icons.chat,
                       numOfPadding: 0.08),

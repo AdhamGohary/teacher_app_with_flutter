@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:teacher_app/ui/screen/mobile_screen/component/sidabar_and_container/sidebar_and_container.dart';
-import 'package:teacher_app/ui/screen/mobile_screen/groups_screen/compnent/receive_msg.dart';
-import 'package:teacher_app/ui/screen/mobile_screen/groups_screen/compnent/send_msg.dart';
+import 'package:teacher_app/ui/screen/mobile_screen/chats_screen/compnent/receive_msg.dart';
+import 'package:teacher_app/ui/screen/mobile_screen/chats_screen/compnent/send_msg.dart';
 import 'package:teacher_app/ui/widgets/custom_txt/custom_txt.dart';
 import 'package:teacher_app/ui/widgets/custom_txt_form_field/custom_txt_form_field.dart';
 import 'package:teacher_app/utils/constants/colors.dart';

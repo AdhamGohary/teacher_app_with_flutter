@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:teacher_app/model/student.dart';
 import 'package:teacher_app/repo/student_repo.dart';
-import 'package:teacher_app/utils/functions/const_functions/print.dart';
 
 class StudentViewModel extends ChangeNotifier {
   late StudentRepo studentRepo;

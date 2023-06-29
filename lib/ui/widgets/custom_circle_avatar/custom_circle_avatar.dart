@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class CustomCircleAvatar extends StatelessWidget {
-  // final String nameOfAssetImage;
   ImageProvider<Object>? backgroundImage;
   Widget? child;
   double? maxRadius;
   Color?backgroundColor;
   CustomCircleAvatar(
       {Key? key,
-      // required this.nameOfAssetImage,
       this.maxRadius,
       this.child,
       this.backgroundImage,

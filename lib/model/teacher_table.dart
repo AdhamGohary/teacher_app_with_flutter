@@ -7,7 +7,6 @@ class TeacherTable {
   late int day;
   late Subject subject;
   late String time;
-  // late String endAt;
   late String gradeName;
   TeacherTable(
       {required this.id,
@@ -15,7 +14,6 @@ class TeacherTable {
       required this.day,
       required this.subject,
       required this.time,
-      // required this.endAt,
       required this.gradeName});
 
   factory TeacherTable.fromJson(Map<String, dynamic> json) {
@@ -25,7 +23,6 @@ class TeacherTable {
         day: json['day'],
         time: json['time'],
         subject: Subject.fromJson(json['subject']),
-        // endAt: json['endAt'],
         gradeName: json['gradeName']);
   }
 
@@ -36,7 +33,6 @@ class TeacherTable {
       'day': day,
       'subject': subject,
       'time': time,
-      // 'endAt': endAt,
       'gradName': gradeName
     };
   }
