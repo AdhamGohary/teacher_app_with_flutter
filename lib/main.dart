@@ -5,6 +5,7 @@ import 'package:teacher_app/repo/services/api.dart';
 import 'package:teacher_app/responsive/responsive.dart';
 import 'package:teacher_app/ui/screen/mobile_screen/login_screen/login_screen.dart';
 import 'package:teacher_app/ui/screen/mobile_screen/main_screen/main_screen.dart';
+import 'package:teacher_app/ui/screen/mobile_screen/splash_screen/splash_screen.dart';
 import 'package:teacher_app/view_model/student_view_model/student_view_model.dart';
 import 'package:teacher_app/view_model/teacher_classes_view_model.dart/teacher_classes_view_model.dart';
 import 'package:teacher_app/view_model/teacher_table_view_model/teacher_table_view_model.dart';
@@ -45,11 +46,12 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        home: const Responsive(),
+        home: const SplashScreen(),
         debugShowCheckedModeBanner: false,
         routes: {
           'LoginScreen': (context) => const LoginScreen(),
-          'MainScreen': (context) => const MainScreen()
+          'MainScreen': (context) => const MainScreen(),
+          'Responsive':(context) => const Responsive()
         },
       ),
     );
