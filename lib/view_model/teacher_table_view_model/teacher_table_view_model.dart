@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:teacher_app/model/teacher_table.dart';
 import 'package:teacher_app/repo/user_repo.dart';
 
+enum DaysOfWeek { sat, sun, mon, tus, wed, thr, fri }
+
 class TeacherTableViewModel extends ChangeNotifier {
   late UserRepo userRepo;
   List<TeacherTable>? teacherTable = [];
@@ -15,7 +17,6 @@ class TeacherTableViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<String> daysOfWeek = ['SAT', 'SUN', 'MON', 'TUS', 'WED', 'THR', 'FRI'];
   List<Map<String, dynamic>> selectDay = [];
   int selectDayIndex = 0;
   List<TeacherTable>? subjectsOfSelectDay = [];

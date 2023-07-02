@@ -13,10 +13,7 @@ import 'package:teacher_app/view_model/user_data_view_model/user_data_view_model
 import 'view_model/home_work_view_model/home_work_view_model.dart';
 
 void main() {
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(const MyApp());
-  FlutterNativeSplash.remove();
   Provider.debugCheckInvalidValueType = null;
 }
 
@@ -31,10 +28,9 @@ class MyApp extends StatelessWidget {
         Provider<HomeWorkViewModel>(
           create: (context) => HomeWorkViewModel(homeWorkRepo: Api()),
         ),
-         Provider<StudentViewModel>(
-          create: (context) => StudentViewModel( studentRepo: Api()),
+        Provider<StudentViewModel>(
+          create: (context) => StudentViewModel(studentRepo: Api()),
         ),
-        
         Provider<TeacherTableViewModel>(
           create: (context) => TeacherTableViewModel(userRepo: Api()),
         ),
@@ -51,7 +47,7 @@ class MyApp extends StatelessWidget {
         routes: {
           'LoginScreen': (context) => const LoginScreen(),
           'MainScreen': (context) => const MainScreen(),
-          'Responsive':(context) => const Responsive()
+          'Responsive': (context) => const Responsive()
         },
       ),
     );

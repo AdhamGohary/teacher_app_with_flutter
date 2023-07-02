@@ -7,6 +7,7 @@ import 'package:teacher_app/ui/widgets/custom_container/custom_container.dart';
 import 'package:teacher_app/ui/widgets/custom_elvated_btn/custom_elvated_btn.dart';
 import 'package:teacher_app/ui/widgets/custom_txt/custom_txt.dart';
 import 'package:teacher_app/utils/constants/colors.dart';
+import 'package:teacher_app/utils/functions/const_functions/print.dart';
 import 'package:teacher_app/utils/functions/const_functions/screen_size_function.dart';
 import 'package:teacher_app/view_model/teacher_table_view_model/teacher_table_view_model.dart';
 import 'component/left_column_with_three_txt/left_column_with_three_txt.dart';
@@ -47,10 +48,7 @@ class _TablesScreenState extends State<TablesScreen> {
                       height: 0.05 * getHeight(context: context),
                       child: ListView.builder(
                           scrollDirection: Axis.horizontal,
-                          itemCount: context
-                              .watch<TeacherTableViewModel>()
-                              .daysOfWeek
-                              .length,
+                          itemCount: DaysOfWeek.values.length,
                           itemBuilder: (context, index) {
                             return Padding(
                               padding: EdgeInsets.only(
@@ -65,9 +63,10 @@ class _TablesScreenState extends State<TablesScreen> {
                                         context: context, index: index);
                                     setState(() {});
                                   },
-                                  txt: context
-                                      .watch<TeacherTableViewModel>()
-                                      .daysOfWeek[index],
+                                  txt: DaysOfWeek.values
+                                      .elementAt(index)
+                                      .name
+                                      .toUpperCase(),
                                 ),
                               ),
                             );
@@ -83,10 +82,12 @@ class _TablesScreenState extends State<TablesScreen> {
                     backgroundColor: deepPurple2,
                     width: 0.4 * getWidth(context: context),
                     child: CustomTxt(
-                      data: context.watch<TeacherTableViewModel>().daysOfWeek[
-                          context
+                      data: DaysOfWeek.values
+                          .elementAt(context
                               .watch<TeacherTableViewModel>()
-                              .selectDayIndex],
+                              .selectDayIndex)
+                          .name
+                          .toUpperCase(),
                       fontColor: deepPurple1,
                     ),
                   ),

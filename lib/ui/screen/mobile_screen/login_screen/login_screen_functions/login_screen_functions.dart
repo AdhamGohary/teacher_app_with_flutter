@@ -10,7 +10,7 @@ Future<void> loginBtnOnTapFunc(
     {required String email,
     required String userPassword,
     required BuildContext context}) async {
-await  context
+  await context
       .read<UserDataViewModel>()
       .addUser(User(email: email, password: userPassword));
 
