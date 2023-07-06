@@ -22,7 +22,6 @@ class HomeWorkViewModel extends ChangeNotifier {
     List? list = await homeWorkRepo.getAllHomeWorks();
     allHomeWorks!.addAll(list!.map((item) => HomeWork.fromJson(item)));
     notifyListeners();
+
   }
-
-
 }

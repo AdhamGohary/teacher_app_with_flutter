@@ -105,7 +105,6 @@ class _MainScreenState extends State<MainScreen> {
                       xBegin: 1,
                       yBegin: 0);
                 },
-                // screen: const ChatsScreen(),
               )
             ],
           ),
