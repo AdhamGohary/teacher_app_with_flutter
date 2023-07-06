@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:teacher_app/utils/functions/const_functions/screen_size_function.dart';
+import 'package:teacher_app/utils/functions/screen_size_function.dart';
 
 // ignore: must_be_immutable
 class CustomContainer extends StatelessWidget {

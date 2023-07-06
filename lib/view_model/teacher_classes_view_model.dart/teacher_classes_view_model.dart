@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:teacher_app/model/teacher_classes.dart';
-import 'package:teacher_app/repo/user_repo.dart';
+import 'package:teacher_app/repo/classes_repo.dart';
 
-class TeacheClassesViewModel extends ChangeNotifier {
-  late UserRepo userRepo;
+class TeacherClassesViewModel extends ChangeNotifier {
+  late ClassesRepo classesRepo;
   List<TeacherClasses>? teacherClasses = [];
   List<String> gradesName = [];
   List<String> gradesId = [];
@@ -12,11 +12,14 @@ class TeacheClassesViewModel extends ChangeNotifier {
   List<String> subjectsName = [];
   List<String> subjectsId = [];
   bool selectClassInGroupScreen = false;
-  TeacheClassesViewModel({required this.userRepo});
+//////////////////////////////////////////////////////////
+  TeacherClassesViewModel({required this.classesRepo});
+ ////////////////////////////////////////////////////////// 
   getTeacherClasses() async {
     teacherClasses!.clear();
-    List? list = await userRepo.getTeacherClasses();
+    List? list = await classesRepo.getTeacherClasses();
     teacherClasses!.addAll(list!.map((item) => TeacherClasses.fromJson(item)));
+
     for (var element in teacherClasses!) {
       if (!gradesName.contains(element.gradeName) &&
           !gradesId.contains(element.gradeId)) {

@@ -2,7 +2,8 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:teacher_app/model/user.dart';
-import 'package:teacher_app/utils/functions/const_functions/view_dialog.dart';
+import 'package:teacher_app/utils/functions/view_dialog.dart';
+import 'package:teacher_app/utils/functions/navigate_and_remove.dart';
 import 'package:teacher_app/view_model/user_data_view_model/user_data_view_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -12,14 +13,12 @@ Future<void> loginBtnOnTapFunc(
     required BuildContext context}) async {
   await context
       .read<UserDataViewModel>()
-      .addUser(User(email: email, password: userPassword));
+      .login(User(email: email, password: userPassword));
 
   SharedPreferences prefs = await SharedPreferences.getInstance();
   int? statusCode = prefs.getInt('statusCode');
   if (statusCode == 200) {
-    // ignore: use_build_context_synchronously
-    Navigator.of(context)
-        .pushNamedAndRemoveUntil('MainScreen', (route) => false);
+    navigateAndRemove(context: context, screen: 'MainScreen');
   } else {
     viewDialog(
         context: context,

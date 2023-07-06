@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:teacher_app/ui/screen/mobile_screen/login_screen/login_screen_functions/login_screen_functions.dart';
+import 'package:teacher_app/ui/screen/mobile_screen/login_screen/login_screen_functions/login_btn_on_tap_func.dart';
 import 'package:teacher_app/ui/widgets/custom_container/custom_container.dart';
 import 'package:teacher_app/ui/widgets/custom_elvated_btn/custom_elvated_btn.dart';
 import 'package:teacher_app/ui/widgets/custom_txt_form_field/custom_txt_form_field.dart';
 import 'package:teacher_app/utils/constants/colors.dart';
-import 'package:teacher_app/utils/functions/const_functions/screen_size_function.dart';
+import 'package:teacher_app/utils/functions/screen_size_function.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);

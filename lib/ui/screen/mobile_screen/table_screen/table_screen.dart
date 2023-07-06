@@ -7,8 +7,7 @@ import 'package:teacher_app/ui/widgets/custom_container/custom_container.dart';
 import 'package:teacher_app/ui/widgets/custom_elvated_btn/custom_elvated_btn.dart';
 import 'package:teacher_app/ui/widgets/custom_txt/custom_txt.dart';
 import 'package:teacher_app/utils/constants/colors.dart';
-import 'package:teacher_app/utils/functions/const_functions/print.dart';
-import 'package:teacher_app/utils/functions/const_functions/screen_size_function.dart';
+import 'package:teacher_app/utils/functions/screen_size_function.dart';
 import 'package:teacher_app/view_model/teacher_table_view_model/teacher_table_view_model.dart';
 import 'component/left_column_with_three_txt/left_column_with_three_txt.dart';
 
@@ -20,14 +19,13 @@ class TablesScreen extends StatefulWidget {
 }
 
 class _TablesScreenState extends State<TablesScreen> {
-  late bool index;
-  late int selectIndex;
-  late int selectDayIndex;
   @override
   void initState() {
-    index = true;
-    selectIndex = 0;
-    selectDayIndex = 0;
+    Provider.of<TeacherTableViewModel>(context, listen: false).selectDayIndex =
+        0;
+    Provider.of<TeacherTableViewModel>(context, listen: false)
+        .subjectsOfSelectDay!
+        .clear();
     super.initState();
   }
 

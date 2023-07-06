@@ -2,19 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:teacher_app/model/student.dart';
 import 'package:teacher_app/ui/screen/mobile_screen/component/sidabar_and_container/sidebar_and_container.dart';
-import 'package:teacher_app/ui/screen/mobile_screen/groups_screen/show_students_screen/connection_with_parent_screen/connection_with_parent_screen.dart';
+import 'package:teacher_app/ui/screen/mobile_screen/connection_with_parent_screen/connection_with_parent_screen.dart';
 import 'package:teacher_app/ui/widgets/custom_circle_avatar/custom_circle_avatar.dart';
 import 'package:teacher_app/ui/widgets/custom_txt/custom_txt.dart';
 import 'package:teacher_app/ui/widgets/custom_txt_form_field/custom_txt_form_field.dart';
 import 'package:teacher_app/utils/constants/colors.dart';
-import 'package:teacher_app/utils/functions/const_functions/navigate_with_slide_transtion_fun.dart';
-import 'package:teacher_app/utils/functions/const_functions/screen_size_function.dart';
+import 'package:teacher_app/utils/functions/navigate_with_slide_transtion_fun.dart';
+import 'package:teacher_app/utils/functions/screen_size_function.dart';
 import 'package:teacher_app/view_model/student_view_model/student_view_model.dart';
 
-// ignore: must_be_immutable
 class ShowStudents extends StatefulWidget {
-  String? nameOfClass;
-  ShowStudents({
+  final String? nameOfClass;
+  const ShowStudents({
     Key? key,
     required this.nameOfClass,
   }) : super(key: key);
@@ -26,16 +25,13 @@ class ShowStudents extends StatefulWidget {
 class _ShowStudentsState extends State<ShowStudents> {
   late bool index;
   late int iconIndex;
-
-  late List<Student> foundStudents ;
+  late List<Student> foundStudents;
   @override
   void initState() {
     index = true;
     iconIndex = 1;
-
     Provider.of<StudentViewModel>(context, listen: false).foundStudents =
         Provider.of<StudentViewModel>(context, listen: false).classStudents;
-
     super.initState();
   }
 
@@ -77,14 +73,26 @@ class _ShowStudentsState extends State<ShowStudents> {
                       setState(() {});
                     }),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  CustomTxt(data: 'الصورة'),
-                  CustomTxt(data: 'الاسم'),
-                  CustomTxt(data: 'رقم ولى الأمر'),
-                  CustomTxt(data: 'محادثة'),
-                ],
+              SizedBox(
+                width: getWidth(context: context),
+                height: 0.05 * getHeight(context: context),
+                child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: context
+                        .watch<StudentViewModel>()
+                        .detailsOfStudent
+                        .length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: EdgeInsets.only(
+                            left: 0.055 * getWidth(context: context)),
+                        child: Selector<StudentViewModel, List>(
+                          selector: (p0, p1) => p1.detailsOfStudent,
+                          builder: (context, data, child) =>
+                              CustomTxt(data: data[index]),
+                        ),
+                      );
+                    }),
               ),
               Divider(
                 color: deepPurple1,
@@ -127,7 +135,7 @@ class _ShowStudentsState extends State<ShowStudents> {
                                       width: 0.10 * getWidth(context: context),
                                       child: CustomTxt(
                                         data: data![index].name,
-                                        overflow: TextOverflow.ellipsis,
+                                        //
                                       ),
                                     ),
                                   );
@@ -135,31 +143,35 @@ class _ShowStudentsState extends State<ShowStudents> {
                             Selector<StudentViewModel, List<Student>?>(
                               selector: (context, studentViewModel) =>
                                   studentViewModel.foundStudents,
-                              builder: (context, data, _) => Expanded(
-                                child: Text(
-                                  data![index].phoneNumber,
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: 'ElMessiri',
-                                  ),
+                              builder: (context, data, _) => Text(
+                                data![index].phoneNumber,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'ElMessiri',
+                                  overflow: TextOverflow.ellipsis,
                                 ),
                               ),
                             ),
-                            Expanded(
-                              child: InkWell(
-                                  onTap: () {
-                                    navigateWithSlideTranstionFun(
-                                        context: context,
-                                        nextScreen:
-                                            ConnectionWithFatherOrMother(
-                                          nameOfStud: '',
-                                          imageOfStud: '',
-                                        ),
-                                        xBegin: 1,
-                                        yBegin: 0);
-                                  },
-                                  child: Image.network(
-                                      'https://res.cloudinary.com/dybkjdyto/image/upload/v1687871818/chat_2_2_iic9uw.png')),
+                            Selector<StudentViewModel, List<Student>?>(
+                              selector: (context, studentViewModel) =>
+                                  studentViewModel.foundStudents,
+                              builder: (context, data, _) => Expanded(
+                                child: InkWell(
+                                    onTap: () async {
+                                      navigateWithSlideTranstionFun(
+                                          context: context,
+                                          nextScreen:
+                                              ConnectionWithFatherOrMother(
+                                            nameOfStud: data![index].name,
+                                            imageOfStud: data[index].imgUrl,
+                                            idOfStudent: data[index].id,
+                                          ),
+                                          xBegin: 1,
+                                          yBegin: 0);
+                                    },
+                                    child: Image.network(
+                                        'https://res.cloudinary.com/dybkjdyto/image/upload/v1687871818/chat_2_2_iic9uw.png')),
+                              ),
                             ),
                           ],
                         ),

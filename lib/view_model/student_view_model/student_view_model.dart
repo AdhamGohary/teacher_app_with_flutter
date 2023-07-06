@@ -6,8 +6,11 @@ class StudentViewModel extends ChangeNotifier {
   late StudentRepo studentRepo;
   List<Student>? classStudents = [];
   List<Student>? foundStudents;
-  String classId = '';
+  final detailsOfStudent = ['الصورة', 'الاسم', 'رقم ولى الأمر', 'محادثة'];
+  String classId = '6437018bc369cbd36656e6a8';
+  //////////////////////////////////////////////
   StudentViewModel({required this.studentRepo});
+  //////////////////////////////////////////////////
   Future<void> getStudentsByClassId({required String classId}) async {
     classStudents!.clear();
     List? list = await studentRepo.getStudentsByClassId(classId: classId);
@@ -28,7 +31,6 @@ class StudentViewModel extends ChangeNotifier {
               .contains(keyWord.toLowerCase().trim()))
           .toList();
     }
-
     foundStudents = result;
   }
 }

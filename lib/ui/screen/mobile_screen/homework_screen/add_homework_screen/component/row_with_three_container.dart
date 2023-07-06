@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:teacher_app/ui/screen/mobile_screen/homework_screen/homework_screen_functions/homework_screen_functions.dart';
+import 'package:teacher_app/ui/screen/mobile_screen/homework_screen/add_homework_screen/add_home_screen_functions/stage_select_on_tap_func.dart';
+import 'package:teacher_app/ui/screen/mobile_screen/homework_screen/add_homework_screen/add_home_screen_functions/subject_select_on_tap_func.dart';
 import 'package:teacher_app/ui/widgets/custom_container/custom_container.dart';
 import 'package:teacher_app/ui/widgets/custom_txt/custom_txt.dart';
 import 'package:teacher_app/utils/constants/colors.dart';
-import 'package:teacher_app/utils/functions/const_functions/screen_size_function.dart';
+import 'package:teacher_app/utils/functions/screen_size_function.dart';
 import 'package:teacher_app/view_model/teacher_classes_view_model.dart/teacher_classes_view_model.dart';
+
+import '../add_home_screen_functions/class_select_on_tap_func.dart';
 
 // ignore: must_be_immutable
 class RowWithThreeContainer extends StatefulWidget {
@@ -62,7 +65,7 @@ class _RowWithThreeContainerState extends State<RowWithThreeContainer> {
                     selectStage = val;
                   },
                   items: context
-                      .watch<TeacheClassesViewModel>()
+                      .watch<TeacherClassesViewModel>()
                       .gradesName
                       .map((e) => DropdownMenuItem(
                             value: e,
@@ -93,7 +96,7 @@ class _RowWithThreeContainerState extends State<RowWithThreeContainer> {
                     selectClass = val;
                   },
                   items: context
-                      .watch<TeacheClassesViewModel>()
+                      .watch<TeacherClassesViewModel>()
                       .classesName
                       .map((e) => DropdownMenuItem(
                             value: e,
@@ -125,7 +128,7 @@ class _RowWithThreeContainerState extends State<RowWithThreeContainer> {
                   selectSubject = val;
                 },
                 items: context
-                    .watch<TeacheClassesViewModel>()
+                    .watch<TeacherClassesViewModel>()
                     .subjectsName
                     .map((e) => DropdownMenuItem(
                           value: e,

@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:teacher_app/ui/screen/mobile_screen/component/sidabar_and_container/sidebar_and_container.dart';
-import 'package:teacher_app/ui/screen/mobile_screen/homework_screen/component/row_with_three_container.dart';
-import 'package:teacher_app/ui/screen/mobile_screen/homework_screen/homework_screen_functions/homework_screen_functions.dart';
-import 'package:teacher_app/ui/widgets/custom_container/custom_container.dart';
+import 'package:teacher_app/ui/screen/mobile_screen/homework_screen/add_homework_screen/add_home_screen_functions/add_homework_btn_func.dart';
+import 'package:teacher_app/ui/screen/mobile_screen/homework_screen/add_homework_screen/component/row_with_three_container.dart';
 import 'package:teacher_app/ui/widgets/custom_elvated_btn/custom_elvated_btn.dart';
-import 'package:teacher_app/ui/widgets/custom_txt/custom_txt.dart';
 import 'package:teacher_app/ui/widgets/custom_txt_form_field/custom_txt_form_field.dart';
 import 'package:teacher_app/utils/constants/colors.dart';
-import 'package:teacher_app/utils/functions/const_functions/print.dart';
-import 'package:teacher_app/utils/functions/const_functions/screen_size_function.dart';
+import 'package:teacher_app/utils/functions/screen_size_function.dart';
 import 'package:teacher_app/view_model/home_work_view_model/home_work_view_model.dart';
 import 'package:provider/provider.dart';
+import 'package:teacher_app/view_model/user_data_view_model/user_data_view_model.dart';
 
 // ignore: must_be_immutable
 class AddHomework extends StatefulWidget {
@@ -91,27 +89,8 @@ class _AddHomeworkState extends State<AddHomework> {
                   prefixIconWidget: const Icon(Icons.edit),
                 ),
               ),
-              InkWell(
-                onTap: () {},
-                child: CustomContainer(
-                  margin: EdgeInsets.only(
-                      top: 0.025 * getHeight(context: context),
-                      left: 0.55 * getWidth(context: context),
-                      bottom: 0.02 * getHeight(context: context)),
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(
-                            right: 0.05 * getWidth(context: context)),
-                        child: Image.asset('images/attach 1.png'),
-                      ),
-                      CustomTxt(
-                        data: 'إضافة ملف',
-                        fontColor: Colors.grey,
-                      )
-                    ],
-                  ),
-                ),
+              const Divider(
+                color: Colors.transparent,
               ),
               CustomElvatedBtn(
                   txt: 'إضافة واجب',
@@ -133,7 +112,7 @@ class _AddHomeworkState extends State<AddHomework> {
                           Provider.of<HomeWorkViewModel>(context, listen: false)
                               .subjectId,
                       teacher:
-                          Provider.of<HomeWorkViewModel>(context, listen: false)
+                          Provider.of<UserDataViewModel>(context, listen: false)
                               .teacherId,
                     );
                     homeWorkDesc.clear();

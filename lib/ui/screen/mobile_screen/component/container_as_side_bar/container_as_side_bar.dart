@@ -1,6 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:teacher_app/ui/screen/mobile_screen/chats_screen/chats_screen.dart';
 import 'package:teacher_app/ui/screen/mobile_screen/groups_screen/groups_screen.dart';
 import 'package:teacher_app/ui/screen/mobile_screen/homework_screen/homework_screen.dart';
 import 'package:teacher_app/ui/screen/mobile_screen/main_screen/main_screen.dart';
@@ -8,12 +8,10 @@ import 'package:teacher_app/ui/screen/mobile_screen/table_screen/table_screen.da
 import 'package:teacher_app/ui/widgets/custom_container/custom_container.dart';
 import 'package:teacher_app/ui/widgets/custom_icon_btn/custom_icon_btn.dart';
 import 'package:teacher_app/utils/constants/colors.dart';
-import 'package:teacher_app/utils/functions/const_functions/navigate_with_slide_transtion_fun.dart';
-import 'package:teacher_app/utils/functions/const_functions/screen_size_function.dart';
-import 'package:teacher_app/utils/functions/const_functions/view_dialog.dart';
-import 'package:teacher_app/view_model/home_work_view_model/home_work_view_model.dart';
-import 'package:teacher_app/view_model/teacher_classes_view_model.dart/teacher_classes_view_model.dart';
-import 'package:teacher_app/view_model/teacher_table_view_model/teacher_table_view_model.dart';
+import 'package:teacher_app/utils/functions/navigate_and_remove.dart';
+import 'package:teacher_app/utils/functions/navigate_with_slide_transtion_fun.dart';
+import 'package:teacher_app/utils/functions/screen_size_function.dart';
+import 'package:teacher_app/utils/functions/view_dialog.dart';
 
 // ignore: must_be_immutable
 class ContainerAsSideBar extends StatelessWidget {
@@ -92,11 +90,11 @@ class ContainerAsSideBar extends StatelessWidget {
                       iconIndex == 4 ? Colors.white : Colors.transparent,
                   child: CustomIconBtn(
                       function: () {
-                       /* navigateWithSlideTranstionFun(
+                        navigateWithSlideTranstionFun(
                             context: context,
                             nextScreen: const ChatsScreen(),
                             xBegin: 1,
-                            yBegin: 0);*/
+                            yBegin: 0);
                       },
                       icon: Icons.chat,
                       numOfPadding: 0.08),
@@ -117,17 +115,8 @@ class ContainerAsSideBar extends StatelessWidget {
                           },
                           btnOkTxt: 'نعم',
                           btnOkFunc: () {
-                            Navigator.of(context).pushNamedAndRemoveUntil(
-                                'LoginScreen', (route) => false);
-                            Provider.of<TeacheClassesViewModel>(context,
-                                    listen: false)
-                                .teacherClasses = [];
-                            Provider.of<TeacherTableViewModel>(context,
-                                    listen: false)
-                                .teacherTable = [];
-                            Provider.of<HomeWorkViewModel>(context,
-                                    listen: false)
-                                .allHomeWorks = [];
+                            navigateAndRemove(
+                                context: context, screen: 'LoginScreen');
                           },
                           dialogType: DialogType.question,
                         );

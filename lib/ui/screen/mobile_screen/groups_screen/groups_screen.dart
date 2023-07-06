@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:teacher_app/model/teacher_classes.dart';
 import 'package:teacher_app/ui/screen/mobile_screen/component/sidabar_and_container/sidebar_and_container.dart';
-import 'package:teacher_app/ui/screen/mobile_screen/groups_screen/groups_screen_functions/groups_screen_functions.dart';
+import 'package:teacher_app/ui/screen/mobile_screen/groups_screen/groups_screen_functions/radio_btn_on_change_func.dart';
+import 'package:teacher_app/ui/screen/mobile_screen/groups_screen/groups_screen_functions/show_student_btn_on_tab_func.dart';
 import 'package:teacher_app/ui/widgets/custom_elvated_btn/custom_elvated_btn.dart';
 import 'package:teacher_app/ui/widgets/custom_txt/custom_txt.dart';
 import 'package:teacher_app/utils/constants/colors.dart';
-import 'package:teacher_app/utils/functions/const_functions/font_size.dart';
-import 'package:teacher_app/utils/functions/const_functions/print.dart';
-import 'package:teacher_app/utils/functions/const_functions/screen_size_function.dart';
+import 'package:teacher_app/utils/functions/font_size.dart';
+import 'package:teacher_app/utils/functions/screen_size_function.dart';
 import 'package:teacher_app/view_model/student_view_model/student_view_model.dart';
 import 'package:teacher_app/view_model/teacher_classes_view_model.dart/teacher_classes_view_model.dart';
 
@@ -19,13 +20,12 @@ class GroupsScreen extends StatefulWidget {
 }
 
 class _GroupsScreenState extends State<GroupsScreen> {
-  late int iconIndex;
+  final iconIndex = 1;
   String? myClass;
   @override
   void initState() {
-    Provider.of<TeacheClassesViewModel>(context, listen: false)
+    Provider.of<TeacherClassesViewModel>(context, listen: false)
         .selectClassInGroupScreen = false;
-    iconIndex = 1;
     super.initState();
   }
 
@@ -76,7 +76,7 @@ class _GroupsScreenState extends State<GroupsScreen> {
                   height: 0.5 * getHeight(context: context),
                   child: ListView.builder(
                       itemCount: context
-                          .watch<TeacheClassesViewModel>()
+                          .watch<TeacherClassesViewModel>()
                           .teacherClasses!
                           .length,
                       itemBuilder: (context, index) {
@@ -85,37 +85,38 @@ class _GroupsScreenState extends State<GroupsScreen> {
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: EdgeInsets.only(
-                                    left: 0.08 * getHeight(context: context)),
-                                child: CustomTxt(
-                                    data: context
-                                        .watch<TeacheClassesViewModel>()
-                                        .teacherClasses![index]
-                                        .className),
-                              ),
+                                  padding: EdgeInsets.only(
+                                      left: 0.08 * getHeight(context: context)),
+                                  child: Selector<TeacherClassesViewModel,
+                                      List<TeacherClasses>?>(
+                                    selector: (p0, p1) => p1.teacherClasses,
+                                    builder: (context, data, child) =>
+                                        CustomTxt(data: data![index].className),
+                                  )),
                             ),
                             Expanded(
-                                child: CustomTxt(
-                                    data: context
-                                        .watch<TeacheClassesViewModel>()
-                                        .teacherClasses![index]
-                                        .gradeName)),
+                                child: Selector<TeacherClassesViewModel,
+                                    List<TeacherClasses>?>(
+                              selector: (p0, p1) => p1.teacherClasses,
+                              builder: (context, data, child) =>
+                                  CustomTxt(data: data![index].gradeName),
+                            )),
                             Expanded(
-                              child: CustomTxt(
-                                  data: context
-                                      .watch<TeacheClassesViewModel>()
-                                      .teacherClasses![index]
-                                      .subjectName),
+                              child: Selector<TeacherClassesViewModel,
+                                  List<TeacherClasses>?>(
+                                selector: (p0, p1) => p1.teacherClasses,
+                                builder: (context, data, child) =>
+                                    CustomTxt(data: data![index].subjectName),
+                              ),
                             ),
                             Radio(
                                 value: context
-                                    .watch<TeacheClassesViewModel>()
+                                    .watch<TeacherClassesViewModel>()
                                     .teacherClasses![index]
                                     .className,
                                 groupValue: myClass,
                                 onChanged: (val) {
                                   myClass = val;
-
                                   radioBtnOnChangeFunc(
                                     context: context,
                                     index: index,
@@ -135,7 +136,7 @@ class _GroupsScreenState extends State<GroupsScreen> {
                         fontFamily: 'ElMessiri',
                         fontSize: contentTxtSize(context)),
                     btnColor: context
-                                .watch<TeacheClassesViewModel>()
+                                .watch<TeacherClassesViewModel>()
                                 .selectClassInGroupScreen ==
                             true
                         ? deepPurple1
@@ -148,6 +149,7 @@ class _GroupsScreenState extends State<GroupsScreen> {
                           classId: Provider.of<StudentViewModel>(context,
                                   listen: false)
                               .classId);
+
                       setState(() {});
                     },
                   ),

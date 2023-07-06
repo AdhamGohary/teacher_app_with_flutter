@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:teacher_app/ui/screen/mobile_screen/component/container_as_side_bar/container_as_side_bar.dart';
 import 'package:teacher_app/ui/widgets/custom_container/custom_container.dart';
-import 'package:teacher_app/utils/functions/const_functions/screen_size_function.dart';
+import 'package:teacher_app/utils/functions/screen_size_function.dart';
 
 // ignore: must_be_immutable
 class SidebarAndContainer extends StatefulWidget {
-  int iconIndex;
-  Widget widgetOfScreen;
+  late int iconIndex;
+  late Widget widgetOfScreen;
   SidebarAndContainer(
       {super.key, required this.iconIndex, required this.widgetOfScreen});
 
