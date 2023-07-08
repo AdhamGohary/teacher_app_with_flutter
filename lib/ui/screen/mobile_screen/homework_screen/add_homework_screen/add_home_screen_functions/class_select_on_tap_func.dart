@@ -5,12 +5,12 @@ import 'package:teacher_app/view_model/teacher_classes_view_model.dart/teacher_c
 
 void classSelectOnTapFunc(
     {required BuildContext context, required String classValue}) {
-  late int indexOfclass;
-  indexOfclass = Provider.of<TeacherClassesViewModel>(context, listen: false)
+  late int indexOfClass;
+  indexOfClass = Provider.of<TeacherClassesViewModel>(context, listen: false)
       .classesName
       .indexOf(classValue);
 
   Provider.of<HomeWorkViewModel>(context, listen: false).classId =
       Provider.of<TeacherClassesViewModel>(context, listen: false)
-          .classesId[indexOfclass];
+          .classesId[indexOfClass];
 }

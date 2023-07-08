@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:teacher_app/repo/services/api/auth_api.dart';
@@ -15,9 +16,16 @@ import 'package:teacher_app/view_model/student_view_model/student_view_model.dar
 import 'package:teacher_app/view_model/teacher_classes_view_model.dart/teacher_classes_view_model.dart';
 import 'package:teacher_app/view_model/teacher_table_view_model/teacher_table_view_model.dart';
 import 'package:teacher_app/view_model/user_data_view_model/user_data_view_model.dart';
+import 'socket/socket.dart';
 import 'view_model/home_work_view_model/home_work_view_model.dart';
 
-void main() {
+void main()  {
+ SocketManager manager = SocketManager();
+  /* manager.connect();
+  manager.sendMessage(
+    'addUserIdToRedis','12345'
+  );*/
+
   runApp(const MyApp());
   Provider.debugCheckInvalidValueType = null;
 }
@@ -37,7 +45,8 @@ class MyApp extends StatelessWidget {
           create: (context) => UserDataViewModel(authRepo: AuthApi()),
         ),
         Provider<TeacherClassesViewModel>(
-          create: (context) => TeacherClassesViewModel(classesRepo: ClassesApi()),
+          create: (context) =>
+              TeacherClassesViewModel(classesRepo: ClassesApi()),
         ),
         Provider<HomeWorkViewModel>(
           create: (context) => HomeWorkViewModel(homeWorkRepo: HomeWorkApi()),
@@ -45,7 +54,7 @@ class MyApp extends StatelessWidget {
         Provider<StudentViewModel>(
           create: (context) => StudentViewModel(studentRepo: StudentApi()),
         ),
-         Provider<ChatViewModel>(
+        Provider<ChatViewModel>(
           create: (context) => ChatViewModel(chatRepo: ChatApi()),
         ),
       ],
@@ -61,3 +70,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+/*String getTeacherId(){
+ 
+}*/

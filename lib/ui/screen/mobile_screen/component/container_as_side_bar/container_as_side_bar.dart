@@ -13,7 +13,6 @@ import 'package:teacher_app/utils/functions/navigate_and_remove.dart';
 import 'package:teacher_app/utils/functions/navigate_with_slide_transtion_fun.dart';
 import 'package:teacher_app/utils/functions/screen_size_function.dart';
 import 'package:teacher_app/utils/functions/view_dialog.dart';
-import 'package:teacher_app/view_model/chat_view_model/chat_view_model.dart';
 import 'package:teacher_app/view_model/home_work_view_model/home_work_view_model.dart';
 import 'package:teacher_app/view_model/student_view_model/student_view_model.dart';
 import 'package:teacher_app/view_model/teacher_classes_view_model.dart/teacher_classes_view_model.dart';

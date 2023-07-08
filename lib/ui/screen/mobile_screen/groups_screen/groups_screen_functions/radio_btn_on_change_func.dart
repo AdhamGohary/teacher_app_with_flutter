@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
-import 'package:teacher_app/ui/screen/mobile_screen/groups_screen/show_students_screen/show_students.dart';
-import 'package:teacher_app/utils/functions/navigate_with_slide_transtion_fun.dart';
 import 'package:teacher_app/view_model/student_view_model/student_view_model.dart';
 import 'package:teacher_app/view_model/teacher_classes_view_model.dart/teacher_classes_view_model.dart';
 
