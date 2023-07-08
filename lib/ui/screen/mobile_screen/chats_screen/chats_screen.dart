@@ -43,7 +43,7 @@ class ChatsScreen extends StatelessWidget {
                           children: [
                             InkWell(
                               onTap: () {
-                                chatIconBtn(index: index, context: context);
+                                chatIconBtn(index: index, context: context, idOfStudent: Provider.of<StudentViewModel>(context,listen: false).classStudents![index].id);
                               },
                               child: CustomContainer(
                                 height: 0.1 * getHeight(context: context),

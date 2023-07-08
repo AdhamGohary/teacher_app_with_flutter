@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:teacher_app/model/chat.dart';
 import 'package:teacher_app/ui/screen/mobile_screen/component/sidabar_and_container/sidebar_and_container.dart';
-import 'package:teacher_app/ui/screen/mobile_screen/chats_screen/compnent/receive_msg.dart';
-import 'package:teacher_app/ui/screen/mobile_screen/chats_screen/compnent/send_msg.dart';
+import 'package:teacher_app/ui/screen/mobile_screen/connection_with_parent_screen/compnent/receive_msg.dart';
+import 'package:teacher_app/ui/screen/mobile_screen/connection_with_parent_screen/compnent/send_msg.dart';
 import 'package:teacher_app/ui/screen/mobile_screen/connection_with_parent_screen/connection_with_parent_screen_functions/send_msg_btn_func.dart';
 import 'package:teacher_app/ui/widgets/custom_circle_avatar/custom_circle_avatar.dart';
 import 'package:teacher_app/ui/widgets/custom_txt/custom_txt.dart';
@@ -43,11 +43,7 @@ class _ConnectionWithFatherOrMotherState
     index = true;
     isLoadMore = false;
     page = 1;
-    context.read<ChatViewModel>().getMsgsWithPagination(Chat(
-        studentId: widget.idOfStudent,
-        teacherId:
-            Provider.of<UserDataViewModel>(context, listen: false).teacherId,
-        page: page));
+    
     _scrollController.addListener(() async {
       if (_scrollController.position.pixels ==
           _scrollController.position.maxScrollExtent) {

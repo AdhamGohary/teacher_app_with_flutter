@@ -20,13 +20,15 @@ import 'socket/socket.dart';
 import 'view_model/home_work_view_model/home_work_view_model.dart';
 
 void main()  {
- SocketManager manager = SocketManager();
-  /* manager.connect();
+     /*SocketManager manager = SocketManager();
+
+   manager.connect();
   manager.sendMessage(
     'addUserIdToRedis','12345'
   );*/
 
   runApp(const MyApp());
+
   Provider.debugCheckInvalidValueType = null;
 }
 
